@@ -1,7 +1,13 @@
 # Modern-devops-pipeline
 **Description**
+Tries to show the essence of a modern devops practices 
+- I have made the effort to deploy on AKS as its a more realistically true approach than deploying minikube and I also realised at starting that this is gonna be a big project
+- I had to have around 12 gb of ram to run all the components.
+- Used load balancer for access my application in real time.
 
 ## Architecture
+
+<img width="823" alt="Screenshot 2025-01-30 at 2 51 52 AM" src="https://github.com/user-attachments/assets/374dc642-da7a-4e36-ac07-34bbf293af71" />
 
 ## 🔧 Tools Used  
 
@@ -18,6 +24,9 @@
 | **Fluentd**      | Open-source data collector for unified logging.                                                   | <img src="https://djeqr6to3dedg.cloudfront.net/repo-logos/library/fluentd/live/logo-1720462195267.png" width="50" height="50"> |
 | **Kibana**       | Data visualization and exploration tool for Elasticsearch.                                        | <img src="https://static-www.elastic.co/v3/assets/bltefdd0b53724fa2ce/blt4466841eed0bf232/5d082a5e97f2babb5af907ee/logo-kibana-32-color.svg" width="50" height="50"> |
 
+## Website Image
+<img width="1437" alt="Screenshot 2025-01-30 at 2 30 31 AM" src="https://github.com/user-attachments/assets/407aed62-bbc7-435b-8596-5a7b1214bbb9" />
+<img width="1439" alt="Screenshot 2025-01-30 at 2 30 56 AM" src="https://github.com/user-attachments/assets/1ecf4f86-8631-4b89-925a-adefada65e06" />
 
 
 
@@ -100,12 +109,13 @@ helm install prometheus prometheus-community/kube-prometheus-stack \
 
 **Grafana dashboard ⬇️**
 ![Screenshot 2025-01-29 at 10 39 07 PM](https://github.com/user-attachments/assets/4977253d-ecc2-449c-ba08-570fae895a88)
-### Prometheus dashboard ⬇️
+**Prometheus dashboard ⬇️**
 ![Screenshot 2025-01-29 at 10 45 23 PM](https://github.com/user-attachments/assets/d3a8f14e-78a9-4109-9080-26f19b92d557)
 
 - Installing EFK stack
 - Will like to tell it took a lot time as there many pre requisite to it
 - Also the system requirements in the default YAML was too much
+- Check out the EKF folder
 So had to do a lot of customisation and took help from youtube
 
 **Terminal view ⬇️**
