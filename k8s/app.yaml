@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: nodeapp
-          image: avy1013/nodeapp:4dd8f8bae062f27a029cf20be4e1a9548f692c09
+          image: avy1013/nodeapp:6e94e8e6d70df0f0085980987c9f7f7642001b57
           ports:
             - containerPort: 3000
           env:
