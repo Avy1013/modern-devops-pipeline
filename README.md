@@ -34,10 +34,11 @@ kubectl create secret generic mysql-secret \
   
 - Using docker file to create a docker image   -- _check docker file_
 - Deploying the node app on k8s -- _check k8s/yaml_
-
+  
+![Screenshot 2025-01-29 at 5 11 01 PM](https://github.com/user-attachments/assets/b405e8dc-5953-4fc2-ac7f-4e7fd36e6811)
 ### 2. Integration Devops principles 
 - Using github actions we create CI for this
-![Screenshot 2025-01-29 at 5 11 01 PM](https://github.com/user-attachments/assets/b405e8dc-5953-4fc2-ac7f-4e7fd36e6811)
+
 
 
 - Integrating ci with github acitons
