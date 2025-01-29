@@ -1,0 +1,44 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: nodeapp-rollout
+  namespace: roll  # Define your namespace for the rollout, separate from 'default' if needed
+spec:
+  replicas: 3  # Set the number of replicas for the rollout
+  strategy:
+    canary:
+      steps:
+        - setWeight: 30  # Shift 30% of traffic to the new version
+        - pause: {duration: 30s}  # Wait for 30 seconds
+        - setWeight: 70  # Shift 70% of traffic to the new version
+        - pause: {duration: 30s}
+        - setWeight: 100  # Shift 100% of traffic to the new version
+  selector:
+    matchLabels:
+      app: nodeapp-rollout
+  template:
+    metadata:
+      labels:
+        app: nodeapp-rollout
+    spec:
+      containers:
+      - name: nodeapp-rollout
+        image: avy1013/nodeapp:4dd8f8bae062f27a029cf20be4e1a9548f692c09  # Use the image you need
+        ports:
+        - containerPort: 3000
+        env:
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret  # Secret in 'default' namespace (for MySQL credentials)
+              key: mysql-user
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret  # Secret in 'default' namespace
+              key: mysql-password
+        - name: MYSQL_HOST
+          value: "mysql.default.svc.cluster.local"  # Assuming MySQL is in the 'default' namespace
+        - name: MYSQL_DATABASE
+          value: "Manhwa-app"
+        imagePullPolicy: Always
