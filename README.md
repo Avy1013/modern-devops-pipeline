@@ -36,9 +36,30 @@ kubectl create secret generic mysql-secret \
 - Deploying the node app on k8s -- _check k8s/yaml_
   
 ![Screenshot 2025-01-29 at 5 11 01 PM](https://github.com/user-attachments/assets/b405e8dc-5953-4fc2-ac7f-4e7fd36e6811)
-### 2. Integration Devops principles 
+### 2. Integration CI principles 
+
 - Using github actions we create CI for this
+  - Steps taken in CI
+  1. Implemented simple tests 
+  2. Pushing to docker
+  3. In the second job 
+  4. ** Implemented that change of new docker image in the app.yaml file **
+
+- Updating the changes in the app.yaml file allows us to have one push CI/CD with Argocd
+
+### 3. Installing argo cd
+- Installing argo cd in the cluster with official doc
+- Applyin the argocd.yaml in k8s folder for application to be applied 
+> As its a public repo we dont need any secrets 
+
+### 4. Installing argo cd Rollout 
+- For this i have decided to a lot of stuff for it work seamlessly
+  1. Created a new namespace for rollouts versions
+  2. Connected to default service of mysql coz i dont want to have another pod running without any use and this also showcase the coredns concept of kubernetes
+  3. Implemented rollouts
+
+- Created app_rollout.yaml under argo_rollout folder to deploy the application
 
 
 
-- Integrating ci with github acitons
+
