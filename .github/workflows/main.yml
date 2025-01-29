@@ -1,0 +1,60 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 21
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Tests
+        run: npm test
+
+      - name: Build Docker Image
+        run: |
+          docker build -t avy1013/nodeapp:${{ github.sha }} .
+
+      - name: Log in to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Push Docker Image
+        run: |
+          docker push avy1013/nodeapp:${{ github.sha }}
+
+  update-k8s-manifest:
+    runs-on: ubuntu-latest
+    needs: build-and-push  # Runs only after build-and-push job completes
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Update Kubernetes manifest with new image tag
+        run: |
+          sed -i 's|image: avy1013/nodeapp:.*|image: avy1013/nodeapp:${{ github.sha }}|g' k8s/app.yaml
+
+      - name: Commit and push updated Kubernetes manifest
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add k8s/deployment.yaml
+          git commit -m "Update Docker image to ${{ github.sha }}"
+          git push
