@@ -1,0 +1,27 @@
+{
+  "scripts": {
+    "test": "jest",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "jest": "^29.7.0",
+    "mssql": "^11.0.1",
+    "mysql2": "^3.12.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
+  },
+  "name": "modern-devops-pipeline",
+  "description": "Uses K8s,argocd,EFK stack",
+  "version": "1.0.0",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
