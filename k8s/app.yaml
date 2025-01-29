@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodeapp-deployment
+spec:
+  replicas: 1  # You can increase replicas as needed
+  selector:
+    matchLabels:
+      app: nodeapp
+  template:
+    metadata:
+      labels:
+        app: nodeapp
+    spec:
+      containers:
+        - name: nodeapp
+          image: avy1013/nodeapp:v3-amd64  # Replace with your Docker Hub username and tag
+          ports:
+            - containerPort: 3000
+          env:
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: mysql-user
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: mysql-password
+            - name: MYSQL_HOST
+              value: "mysql" 
+            - name: MYSQL_DATABASE
+              value: "Manhwa-app"
+          imagePullPolicy: Always
+
