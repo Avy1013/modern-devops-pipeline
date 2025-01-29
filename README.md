@@ -46,11 +46,15 @@ kubectl create secret generic mysql-secret \
   4. ** Implemented that change of new docker image in the app.yaml file **
 
 - Updating the changes in the app.yaml file allows us to have one push CI/CD with Argocd
+> For demonstration just look in actions of this repo
 
 ### 3. Installing argo cd
 - Installing argo cd in the cluster with official doc
 - Applyin the argocd.yaml in k8s folder for application to be applied 
-> As its a public repo we dont need any secrets 
+> As its a public repo we dont need any secrets
+
+![Screenshot 2025-01-29 at 9 05 09 PM](https://github.com/user-attachments/assets/13a498d2-16ba-4b01-a9c3-a06e651445ef)
+
 
 ### 4. Installing argo cd Rollout 
 - For this i have decided to a lot of stuff for it work seamlessly
@@ -60,7 +64,42 @@ kubectl create secret generic mysql-secret \
 
 - Created app_rollout.yaml under argo_rollout folder to deploy the application
 
+### Argocd rollout cli outputs
 <img src="https://github.com/user-attachments/assets/4022b4ca-2039-4ee5-b1b9-250e9848025e" width="1000" alt="Screenshot 2025-01-29 at 8 37 21 PM">
+
+### Final output of Argo cd rollout dashboard
+![Screenshot 2025-01-29 at 9 13 35 PM](https://github.com/user-attachments/assets/1df5b770-5395-4839-8198-612adae0038f)
+
+### 5. Observability and Monitoring 
+- Installing prometheus and grafana
+```
+helm install prometheus prometheus-community/kube-prometheus-stack \
+  --namespace monitoring \
+  --set nodeSelector."kubernetes\.io/hostname"="aks-temp-10754646-vmss000000"
+```
+- Had to specifically tell k8s to schedule on a new node as the previos node memory got 100%
+![Screenshot 2025-01-29 at 10 50 04 PM](https://github.com/user-attachments/assets/c8be7ebf-a42c-44fc-a8bb-2f11bd4a92b6)
+
+### Grafana dashboard ⬇️
+![Screenshot 2025-01-29 at 10 39 07 PM](https://github.com/user-attachments/assets/4977253d-ecc2-449c-ba08-570fae895a88)
+### Prometheus dashboard ⬇️
+![Screenshot 2025-01-29 at 10 45 23 PM](https://github.com/user-attachments/assets/d3a8f14e-78a9-4109-9080-26f19b92d557)
+
+- Installing EFK stack
+- Will like to tell it took a lot time as there many pre requisite to it
+- Also the system requirements in the default YAML was too much
+So had to do a lot of customisation and took help from youtube
+
+### Terminal view ⬇️
+<img width="891" alt="Screenshot 2025-01-30 at 2 06 42 AM" src="https://github.com/user-attachments/assets/5729a139-7f80-4aa8-a092-b23476341dd4" />
+### index in elastic serach ⬇️
+<img width="1438" alt="Screenshot 2025-01-30 at 1 45 46 AM" src="https://github.com/user-attachments/assets/f5df8707-ae64-46ca-b656-ad2ecb631ec7" />
+### logs of default namespace ⬇️
+<img width="1439" alt="Screenshot 2025-01-30 at 2 05 01 AM" src="https://github.com/user-attachments/assets/a15fd633-2090-4e8a-b56d-01006f0b9332" />
+
+
+
+
 
 
 
