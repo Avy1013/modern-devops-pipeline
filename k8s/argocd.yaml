@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nodeapp
+  namespace: argocd  # Ensure Argo CD is installed in this namespace
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/Avy1013/modern-devops-pipeline.git' # Update with your repo
+    targetRevision: main
+    path: k8s  # Update with the folder containing your manifests
+  destination:
+    server: https://kubernetes.default.svc  # Deploy inside the cluster
+    namespace: default  # Change if using a different namespace
+  syncPolicy:
+    automated:
+      prune: true  # Remove resources if they are deleted from Git
+      selfHeal: true  # Auto-sync if differences are detected
+    syncOptions:
+      - CreateNamespace=true  # Ensure namespace exists
