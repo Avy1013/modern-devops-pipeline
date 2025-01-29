@@ -60,6 +60,7 @@ kubectl create secret generic mysql-secret \
 
 - Created app_rollout.yaml under argo_rollout folder to deploy the application
 
+<img src="https://github.com/user-attachments/assets/4022b4ca-2039-4ee5-b1b9-250e9848025e" width="1000" alt="Screenshot 2025-01-29 at 8 37 21 PM">
 
 
 
