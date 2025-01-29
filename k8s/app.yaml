@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: nodeapp
-          image: avy1013/nodeapp:v3-amd64  # Replace with your Docker Hub username and tag
+          image: avy1013/nodeapp:4dd8f8bae062f27a029cf20be4e1a9548f692c09
           ports:
             - containerPort: 3000
           env:
