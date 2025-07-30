@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const manhwaList = document.getElementById('manhwa-list');
 
     // Fetch data from the server
-    fetch('http://52.140.80.183/manhwa') // Make sure the URL matches your backend
+    fetch('http://52.140.87.124/manhwa') // Make sure the URL matches your backend
         .then(response => response.json())
         .then(manhwaData => {
             // Function to display manhwa
