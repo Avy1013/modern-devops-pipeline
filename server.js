@@ -15,7 +15,7 @@ app.use(express.static('public'));
 // Create MySQL connection
 const db = mysql.createConnection({
   host: 'mysql', // MySQL service name in Kubernetes
-  user: 'root',  // Replace with your MySQL username
+  user: 'yourusername',  // Replace with your MySQL username
   password: 'yourpassword', // Replace with your MySQL root password
   database: 'Manhwa-app'
 });
